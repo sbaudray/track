@@ -6,4 +6,5 @@ npm-debug.log
 /node_modules/
 /bundleOutput/
 __generated__/
+schema.graphql
 src/*.bs.js

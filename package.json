@@ -2,10 +2,11 @@
   "name": "track",
   "version": "0.1.0",
   "scripts": {
-    "build": "bsb -make-world",
-    "start": "bsb -make-world -w -ws _ ",
-    "clean": "bsb -clean-world",
-    "server": "moduleserve ./ --port 8000",
+    "start": "yarn relay:watch & yarn webpack:watch & yarn bs:watch",
+    "webpack:watch": "webpack-dev-server --open",
+    "bs:build": "bsb -make-world",
+    "bs:watch": "bsb -make-world -w -ws _ ",
+    "bs:clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
     "relay": "reason-relay-compiler",
     "relay:watch": "reason-relay-compiler --watch"
@@ -31,10 +32,16 @@
     "relay-runtime": "10.0.1"
   },
   "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.2",
     "bs-platform": "^8.2.0",
+    "copy-webpack-plugin": "^6.1.0",
+    "css-loader": "^4.3.0",
     "moduleserve": "^0.9.0",
+    "react-refresh": "^0.8.3",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "resolutions": {
     "react": "0.0.0-experimental-d7382b6c4",
