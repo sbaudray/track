@@ -1,0 +1,11 @@
+.IssuesRoot__table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid black;
+}
+
+.IssuesRoot__table th,
+.IssuesRoot__table td {
+  border: 1px solid black;
+  padding: 1rem;
+}

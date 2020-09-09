@@ -1,3 +1,5 @@
+Module.require("./IssuesRoot.css");
+
 module Query = [%relay.query
   {|
   query IssuesRootQuery {
@@ -18,7 +20,7 @@ module Query = [%relay.query
 let make = () => {
   let queryData = Query.use(~variables=(), ());
 
-  <table>
+  <table className="IssuesRoot__table">
     <thead>
       <tr>
         <th> {React.string("Title")} </th>
