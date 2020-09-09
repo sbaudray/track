@@ -1,0 +1,43 @@
+{
+  "name": "track",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w -ws _ ",
+    "clean": "bsb -clean-world",
+    "server": "moduleserve ./ --port 8000",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "relay": "reason-relay-compiler",
+    "relay:watch": "reason-relay-compiler --watch"
+  },
+  "keywords": [
+    "BuckleScript",
+    "ReasonReact",
+    "reason-react"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bs-fetch": "^0.6.2",
+    "graphql": "^15.3.0",
+    "react": "0.0.0-experimental-d7382b6c4",
+    "react-dom": "0.0.0-experimental-d7382b6c4",
+    "react-relay": "0.0.0-experimental-8058ef82",
+    "reason-promise": "^1.1.1",
+    "reason-react": "^0.9.1",
+    "reason-relay": "^0.11.0",
+    "relay-compiler": "10.0.1",
+    "relay-config": "10.0.1",
+    "relay-runtime": "10.0.1"
+  },
+  "devDependencies": {
+    "bs-platform": "^8.2.0",
+    "moduleserve": "^0.9.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "resolutions": {
+    "react": "0.0.0-experimental-d7382b6c4",
+    "react-dom": "0.0.0-experimental-d7382b6c4"
+  }
+}
