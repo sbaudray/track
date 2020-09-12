@@ -47,7 +47,15 @@ let make = (~id) => {
       <div> {React.string(issue.title)} </div>
       <div> {React.string(issue.author.username)} </div>
       <div> {React.string(issue.body)} </div>
-      <div> {React.string(issue.status)} </div>
+      <div>
+        {React.string(
+           switch (issue.status) {
+           | `OPENED => "Opened"
+           | `CLOSED => "Closed"
+           | _ => ""
+           },
+         )}
+      </div>
       <button onClick=markIssueAsClosed>
         {React.string("Mark as closed")}
       </button>

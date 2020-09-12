@@ -6,7 +6,7 @@ let fetchQuery: ReasonRelay.Network.fetchFunctionPromise =
   (operation, variables, _cacheConfig) => {
     Fetch.(
       fetchWithInit(
-        "http://localhost:4000/api",
+        "http://localhost:4000/api/graphql",
         RequestInit.make(
           ~method_=Post,
           ~body=
@@ -22,6 +22,7 @@ let fetchQuery: ReasonRelay.Network.fetchFunctionPromise =
               "content-type": "application/json",
               "accept": "application/json",
             }),
+          ~credentials=Include,
           (),
         ),
       )

@@ -40,7 +40,15 @@ let make = () => {
                    {React.string(issue.title)}
                  </Link>
                </td>
-               <td> {React.string(issue.status)} </td>
+               <td>
+                 {React.string(
+                    switch (issue.status) {
+                    | `OPENED => "Opened"
+                    | `CLOSED => "Closed"
+                    | _ => ""
+                    },
+                  )}
+               </td>
              </tr>
            | None => React.null
            }
