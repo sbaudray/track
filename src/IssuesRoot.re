@@ -47,7 +47,7 @@ let make = () => {
                    <td>
                      {React.string(
                         switch (issue.status) {
-                        | `OPENED => "Opened"
+                        | `OPEN => "Open"
                         | `CLOSED => "Closed"
                         | _ => ""
                         },

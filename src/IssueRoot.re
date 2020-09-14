@@ -43,11 +43,11 @@ let make = (~id) => {
     ();
   };
 
-  let markIssueAsOpened = _ => {
+  let markIssueAsOpen = _ => {
     let _ = mutate(~variables={
                      input: {
                        id,
-                       status: `OPENED,
+                       status: `OPEN,
                      },
                    }, ());
     ();
@@ -65,7 +65,7 @@ let make = (~id) => {
            <div>
              {React.string(
                 switch (issue.status) {
-                | `OPENED => "Opened by " ++ issue.author.username
+                | `OPEN => "Opened by " ++ issue.author.username
                 | `CLOSED => "Closed by " ++ issue.author.username
                 | _ => ""
                 },
@@ -75,12 +75,12 @@ let make = (~id) => {
              {React.string(issue.body)}
            </div>
            {switch (issue.status) {
-            | `OPENED =>
+            | `OPEN =>
               <button onClick=markIssueAsClosed>
                 {React.string("Mark as closed")}
               </button>
             | `CLOSED =>
-              <button onClick=markIssueAsOpened>
+              <button onClick=markIssueAsOpen>
                 {React.string("Mark as opened")}
               </button>
             | _ => React.null
