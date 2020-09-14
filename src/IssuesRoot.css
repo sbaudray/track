@@ -1,11 +1,30 @@
+.IssuesRoot__main {
+  margin: 3rem;
+  display: grid;
+  place-items: center;
+}
+
 .IssuesRoot__table {
-  border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid black;
+  border-radius: 1rem;
+  border: 1px solid lightgray;
+  overflow: hidden;
 }
 
 .IssuesRoot__table th,
 .IssuesRoot__table td {
-  border: 1px solid black;
   padding: 1rem;
+}
+
+.IssuesRoot__table th {
+  background: whitesmoke;
+}
+
+.IssuesRoot__table tr:hover {
+  background: lavender;
+}
+
+.IssuesRoot__table_author_row {
+  display: grid;
+  place-items: center;
 }

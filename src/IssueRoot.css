@@ -1,0 +1,13 @@
+.IssueRoot__main {
+  margin: 3rem;
+  display: grid;
+  place-items: center;
+}
+
+.IssueRoot__Issue_title {
+  font-size: 1.5rem;
+}
+
+.IssueRoot__Issue_body {
+  margin-top: 2rem;
+}

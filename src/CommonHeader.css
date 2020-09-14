@@ -1,0 +1,22 @@
+.CommonHeader {
+  background: #475868;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.CommonHeader__Brand {
+  color: orange;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-family: sans-serif;
+}
+
+.CommonHeader__Logout {
+  background-color: indianred;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.5rem;
+}

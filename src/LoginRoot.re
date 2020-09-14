@@ -1,3 +1,5 @@
+Module.require("./LoginRoot.css");
+
 module LoginMutation = [%relay.mutation
   {|
 mutation LoginRootLoginMutation($input: LoginInput!) {
@@ -17,7 +19,7 @@ mutation LoginRootLoginMutation($input: LoginInput!) {
 [@react.component]
 let make = () => {
   let (mutate, _isMutating) = LoginMutation.use();
-  let userDispatch = UserDispatchProvider.useDispatch();
+  let userDispatch = User.DispatchProvider.useDispatch();
   let (email, setEmail) = React.useState(() => "");
   let (password, setPassword) = React.useState(() => "");
   let (error, setError) = React.useState(() => None);
@@ -47,31 +49,36 @@ let make = () => {
     ();
   };
 
-  <form onSubmit=submitForm>
-    <label htmlFor="email"> {React.string("Email:")} </label>
-    <input
-      id="email"
-      type_="text"
-      value=email
-      onChange={event => {
-        let value = ReactEvent.Form.target(event)##value;
-        setEmail(_ => value);
-      }}
-    />
-    <label htmlFor="password"> {React.string("Password:")} </label>
-    <input
-      id="password"
-      type_="password"
-      value=password
-      onChange={event => {
-        let value = ReactEvent.Form.target(event)##value;
-        setPassword(_ => value);
-      }}
-    />
-    <button> {React.string("Submit")} </button>
-    {switch (error) {
-     | Some(error) => <span> {React.string(error)} </span>
-     | None => React.null
-     }}
-  </form>;
+  <div className="LoginRoot">
+    <form onSubmit=submitForm>
+      <label htmlFor="email"> {React.string("Email:")} </label>
+      <input
+        id="email"
+        type_="text"
+        value=email
+        onChange={event => {
+          let value = ReactEvent.Form.target(event)##value;
+          setEmail(_ => value);
+        }}
+      />
+      <label htmlFor="password"> {React.string("Password:")} </label>
+      <input
+        id="password"
+        type_="password"
+        value=password
+        onChange={event => {
+          let value = ReactEvent.Form.target(event)##value;
+          setPassword(_ => value);
+        }}
+      />
+      <button className="LoginRoot__submit">
+        {React.string("Submit")}
+      </button>
+      {switch (error) {
+       | Some(error) =>
+         <span className="LoginRoot__error"> {React.string(error)} </span>
+       | None => React.null
+       }}
+    </form>
+  </div>;
 };

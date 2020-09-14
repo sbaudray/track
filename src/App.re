@@ -20,34 +20,31 @@ module Query = [%relay.query
 let make = () => {
   let (firstTime, setFirstTime) = React.useState(() => true);
   let url = ReasonReactRouter.useUrl();
-  let user = UserValueProvider.useValue();
-  let userDispatch = UserDispatchProvider.useDispatch();
+  let user = User.ValueProvider.useValue();
+  let userDispatch = User.DispatchProvider.useDispatch();
 
   let queryData = Query.use(~variables=(), ());
 
   React.useEffect1(
     () => {
+      setFirstTime(_ => false);
       switch (queryData.me) {
       | Some({user: Some(user)}) =>
-        setFirstTime(_ => true);
-        userDispatch(Login({email: user.email, username: user.username}));
+        userDispatch(Login({email: user.email, username: user.username}))
       | _ => ignore()
       };
 
       Some(ignore);
     },
-    [|queryData.me|],
+    [||],
   );
 
   let current_user =
-    switch (firstTime) {
-    | true =>
-      switch (queryData.me) {
-      | Some({user: Some(user)}) =>
-        Citizen({email: user.email, username: user.username})
-      | _ => Alien
-      }
-    | _ => user
+    switch (firstTime, queryData.me) {
+    | (true, Some({user: Some(user)})) =>
+      Citizen({email: user.email, username: user.username})
+    | (true, _) => Alien
+    | (false, _) => user
     };
 
   switch (url.path, current_user) {

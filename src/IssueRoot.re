@@ -1,3 +1,5 @@
+Module.require("./IssueRoot.css");
+
 module MarkIssueAsMutation = [%relay.mutation
   {|
 mutation IssueRootMarkIssueAsMutation($input: MarkIssueAsInput!) {
@@ -41,25 +43,51 @@ let make = (~id) => {
     ();
   };
 
-  switch (queryData.issue) {
-  | Some(issue) =>
-    <div>
-      <div> {React.string(issue.title)} </div>
-      <div> {React.string(issue.author.username)} </div>
-      <div> {React.string(issue.body)} </div>
-      <div>
-        {React.string(
-           switch (issue.status) {
-           | `OPENED => "Opened"
-           | `CLOSED => "Closed"
-           | _ => ""
-           },
-         )}
-      </div>
-      <button onClick=markIssueAsClosed>
-        {React.string("Mark as closed")}
-      </button>
-    </div>
-  | None => <div> {React.string("fuck me")} </div>
+  let markIssueAsOpened = _ => {
+    let _ = mutate(~variables={
+                     input: {
+                       id,
+                       status: `OPENED,
+                     },
+                   }, ());
+    ();
   };
+
+  <div>
+    <CommonHeader />
+    <main className="IssueRoot__main">
+      {switch (queryData.issue) {
+       | Some(issue) =>
+         <div>
+           <div className="IssueRoot__Issue_title">
+             {React.string(issue.title)}
+           </div>
+           <div>
+             {React.string(
+                switch (issue.status) {
+                | `OPENED => "Opened by " ++ issue.author.username
+                | `CLOSED => "Closed by " ++ issue.author.username
+                | _ => ""
+                },
+              )}
+           </div>
+           <div className="IssueRoot__Issue_body">
+             {React.string(issue.body)}
+           </div>
+           {switch (issue.status) {
+            | `OPENED =>
+              <button onClick=markIssueAsClosed>
+                {React.string("Mark as closed")}
+              </button>
+            | `CLOSED =>
+              <button onClick=markIssueAsOpened>
+                {React.string("Mark as opened")}
+              </button>
+            | _ => React.null
+            }}
+         </div>
+       | None => <div> {React.string("fuck me")} </div>
+       }}
+    </main>
+  </div>;
 };

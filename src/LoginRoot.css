@@ -1,0 +1,64 @@
+.LoginRoot {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+.heading {
+  color: #3b4859;
+  font-family: sans-serif;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.LoginRoot label {
+  color: #3b4859;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.LoginRoot input {
+  border: 1px solid #d6dde2;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-top: 4px;
+  outline: none;
+}
+
+.LoginRoot input:focus {
+  border-color: #475868;
+}
+
+.LoginRoot input + label {
+  margin-top: 20px;
+}
+
+.LoginRoot form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.LoginRoot__submit {
+  background: #3b4859;
+  color: white;
+  font-family: sans-serif;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.LoginRoot__submit:focus {
+  opacity: 0.8;
+}
+
+.LoginRoot__error {
+  color: firebrick;
+  font-family: sans-serif;
+  margin-top: 1rem;
+  text-align: center;
+}

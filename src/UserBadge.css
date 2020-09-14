@@ -1,0 +1,9 @@
+.UserBadge {
+  background-color: royalblue;
+  border-radius: 50%;
+  color: white;
+  display: grid;
+  height: 1.5rem;
+  place-items: center;
+  width: 1.5rem;
+}
