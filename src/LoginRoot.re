@@ -5,6 +5,7 @@ module LoginMutation = [%relay.mutation
 mutation LoginRootLoginMutation($input: LoginInput!) {
   login(input: $input) {
     user {
+      id
       username
       email
     }
@@ -39,7 +40,11 @@ let make = () => {
             switch (response.login) {
             | Some({user: Some(user)}) =>
               userDispatch(
-                Login({email: user.email, username: user.username}),
+                Login({
+                  id: user.id,
+                  email: user.email,
+                  username: user.username,
+                }),
               )
             | _ => setError(_ => Some("Unauthorized"))
             }

@@ -4,5 +4,7 @@ let handleClick = (href, event) => {
 };
 
 [@react.component]
-let make = (~href, ~children) =>
-  <a href onClick={event => handleClick(href, event)}> children </a>;
+let make = (~href, ~className="", ~children) =>
+  <a className href onClick={event => handleClick(href, event)}>
+    children
+  </a>;

@@ -23,6 +23,9 @@ let make = () => {
   <div>
     <CommonHeader />
     <main className="IssuesRoot__main">
+      <Link href="issue/new" className="IssuesRoot__new_issue">
+        {React.string("New issue")}
+      </Link>
       <table className="IssuesRoot__table">
         <thead>
           <tr>

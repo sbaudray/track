@@ -5,6 +5,7 @@ module Query = [%relay.query
   query AppMeQuery {
     me {
       user {
+        id
         username
         email
       }
@@ -30,7 +31,9 @@ let make = () => {
       setFirstTime(_ => false);
       switch (queryData.me) {
       | Some({user: Some(user)}) =>
-        userDispatch(Login({email: user.email, username: user.username}))
+        userDispatch(
+          Login({id: user.id, email: user.email, username: user.username}),
+        )
       | _ => ignore()
       };
 
@@ -42,7 +45,7 @@ let make = () => {
   let current_user =
     switch (firstTime, queryData.me) {
     | (true, Some({user: Some(user)})) =>
-      Citizen({email: user.email, username: user.username})
+      Citizen({id: user.id, email: user.email, username: user.username})
     | (true, _) => Alien
     | (false, _) => user
     };
@@ -50,6 +53,7 @@ let make = () => {
   switch (url.path, current_user) {
   | (_, Alien) => <LoginRoot />
   | ([], _) => <IssuesRoot />
+  | (["issue", "new"], Citizen(user)) => <NewIssueRoot user />
   | (["issue", id], _) => <IssueRoot id />
   | (_, _) => <div> {React.string("Never gonna happen")} </div>
   };
